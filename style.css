@@ -1,0 +1,159 @@
+/* ELA YAREN AYDIN / HASTANE RANDEVU SİSTEMİ PROJE */
+        body {
+            background-color: #f5f7f5;
+            font-family: Arial, sans-serif;
+        }
+        .section {
+            display: none;
+            width: 30%;
+            margin: 0 auto;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .active {
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 40px;
+            position: relative; /* uyarı metni */
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select, button {
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .prev-button {
+            background-color: #d35106;
+            border: #d35106;
+            border-radius: 8px;
+            color: #f5f7f5;
+            display: none;
+            width: 80px;
+            height: 30px;
+            line-height: 10px;
+            text-align: center;
+            display: inline-block;
+        }
+        .next-button {
+            background-color: #05804e;
+            border: #05804e;
+            border-radius: 10px;
+            width: 250px;
+            margin: 0 auto;
+            display: block;
+            color: #f5f7f5;
+        }
+        .error {
+            margin: 1px;
+            color: red;
+            display: none;
+            position: absolute;
+            bottom: -20px; /* Daha fazla boşluk eklemek için değeri artır */
+            left: 0;
+            font-size: 0.9em;
+        }
+        .error.visible {
+            display: block;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .header img {
+            margin-right: 10px;
+        }
+        .accordion {
+            margin-top: 20px;
+        }
+        .accordion-button {
+            background-color: #aeb8e3;
+            color: #000000;
+            cursor: pointer;
+            padding: 10px;
+            text-align: left;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            width: 100%;
+        }
+        .accordion-content {
+            display: none;
+            overflow: hidden;
+            background-color: #f5f7f5;
+            padding: 10px;
+        }
+        .time-slot {
+            background-color: #cdd1df;
+            color: #000000;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            width: 30%;
+            cursor: pointer;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .time-slot:hover {
+            background-color: rgb(103, 117, 181);
+        }
+        .result {
+            width: 50%;
+            height: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e1e1e1;
+            border-radius: 5px;
+            text-align: center;
+            margin: auto;
+        }
+        .result-content p {
+        margin: 5px 0;
+        font-size: 1.1em;
+        line-height: 1.5;
+    }
+    .result-content p .title {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #d35106;
+    }
+    .result-content p .label {
+        font-size: 0.9em;
+        font-weight: bold;
+        color: #301a06;
+    }
+    .result-content p .value {
+        font-size: 1.15em;
+        font-weight: bold;
+        color: #141c1f;
+        text-shadow: 0.25px 0.25px 0 #000, -0.25px -0.25px 0 #000, 0.25px -0.25px 0 #000, -0.25px 0.25px 0 #000; /* Daha ince siyah dış çerçeve */
+    }
+    
+        #resultSection {
+            background-color: #dadbe1;
+        }
+        .button-container {
+            position: absolute;
+            top: 10px; 
+            right: 10px; 
+            display: flex;
+            gap: 10px; 
+        }
+        #login-button, #signup-button {
+            background-color: #d35106;
+            border: #d35106;
+            border-radius: 8px;
+            color: #f5f7f5;
+            width: 100px;
+        }
