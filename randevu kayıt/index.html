@@ -1,0 +1,172 @@
+<!-- ELA YAREN AYDIN / HASTANE RANDEVU SİSTEMİ PROJE -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hastane Randevu Kayıt Sistemi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="button-container">
+        <button id="login-button" onclick="redirectToLogin()">Giriş Yap</button>
+        <button id="signup-button" onclick="redirectToLogin()">Kayıt Ol</button>
+    </div>
+    <div class="header">
+        <img src="caduceus.png" alt="Resim" width="40" height="40">
+        <h1 class="fixed-item">Hastane Randevu Kayıt Sistemi</h1>
+    </div>
+    
+    <div class="section active" id="section1">
+        <div class="header">
+            <img src="patient.png" alt="Resim" width="40" height="40">
+            <h2>Hasta Bilgileri</h2>
+        </div>
+        <div class="form-group">
+            <label for="name">İsim:</label>
+            <input type="text" id="name">
+            <span class="error" id="nameError">Lütfen bu alanı boş bırakmayınız.</span>
+        </div>
+        <div class="form-group">
+            <label for="surname">Soy İsim:</label>
+            <input type="text" id="surname">
+            <span class="error" id="surnameError">Lütfen bu alanı boş bırakmayınız.</span>
+        </div>
+        <div class="form-group">
+            <label for="tc">TC Kimlik No:</label>
+            <input type="text" id="tc" minlength="11" maxlength="11">
+            <span class="error" id="tcError">Lütfen geçerli bir TC Kimlik Numarası giriniz.</span>
+        </div>
+        <div class="form-group">
+            <label for="dob">Doğum Tarihi:</label>
+            <input type="date" id="dob">
+            <span class="error" id="dobError">Lütfen bu alanı boş bırakmayınız.</span>
+            <span class="error" id="birthDateError">İleri bir tarih seçemezsiniz.</span>
+        </div>
+        <div class="form-group">
+            <label for="phone">Telefon Numarası:</label>
+            <input type="text" id="phone" name="phone" placeholder="Sadece rakam giriniz. (53x)..." minlength="10" maxlength="10" required>
+            <span class="error" id="phoneError">Lütfen geçerli bir telefon numarası giriniz.</span>
+        </div>
+        <button class="next-button" onclick="validateAndNext()">Devam Et</button>
+    </div>
+
+    <div class="section" id="section2">
+        <button class="prev-button" onclick="prevSection(1)">Geri Dön</button>
+        <div class="header">
+            <img src="hospital.png" alt="Resim" width="40" height="40">
+            <h2>Poliklinik ve Hastane Bilgileri</h2>
+        </div>
+        <div class="form-group">
+            <label for="hospital">Hastane:</label>
+            <select id="hospital">
+                <option value="">Lütfen seçim yapınız</option>
+                <option value="Hastane A">Hastane A</option>
+                <option value="Hastane B">Hastane B</option>
+                <option value="Hastane C">Hastane C</option>
+            </select>
+            <span class="error" id="hospitalError">Lütfen seçim yapınız.</span>
+        </div>
+
+        <div class="form-group">
+            <label for="clinic">Poliklinik:</label>
+            <select id="clinic">
+                <option value="">Lütfen seçim yapınız</option>
+                <option value="Kardiyoloji">Kardiyoloji</option>
+                <option value="Dahiliye">Dahiliye</option>
+                <option value="Ortopedi">Ortopedi</option>
+            </select>
+            <span class="error" id="clinicError">Lütfen seçim yapınız.</span>
+        </div>
+        <div class="form-group">
+            <label for="doctor">Doktor:</label>
+            <select id="doctor">
+                <option value="">Lütfen seçim yapınız</option>
+                <option value="Doktor X">Doktor X</option>
+                <option value="Doktor Y">Doktor Y</option>
+                <option value="Doktor Z">Doktor Z</option>
+            </select>
+            <span class="error" id="doctorError">Lütfen seçim yapınız.</span>
+        </div>
+        <button class="next-button" onclick="validateAndNext2()">Devam Et</button>
+    </div>
+
+    <div class="section" id="section3">
+        <button class="prev-button" onclick="prevSection(2)">Geri Dön</button>
+        <div class="header">
+            <img src="date.png" alt="Resim" width="40" height="40">
+            <h2>Randevu Günü ve Saati</h2>
+        </div>
+        <div class="form-group">
+            <label for="appointment-date">Randevu Tarihi:</label>
+            <input type="date" id="appointment-date">
+            <span class="error" id="appointmentDateError">Lütfen geçerli bir tarih seçiniz. Cumartesi ve Pazar günleri seçilemez.</span>
+            <span class="error" id="appointmentDateEmptyError">Lütfen seçim yapınız.</span>
+            <span class="error" id="appointmentDatePastError">Geçmiş bir tarih seçemezsiniz.</span>
+        </div>
+        <div class="form-group">
+            <label for="appointment-time">Randevu Saati:</label>
+            <div class="accordion">
+                <button class="accordion-button">08:00 - 09:00</button>
+                <div class="accordion-content">
+                    <button class="time-slot" onclick="selectTime('08:30')">08:30</button>
+                    <button class="time-slot" onclick="selectTime('08:45')">08:45</button>
+                </div>
+                <button class="accordion-button">09:00 - 10:00</button>
+                <div class="accordion-content">
+                    <button class="time-slot" onclick="selectTime('09:00')">09:00</button>
+                    <button class="time-slot" onclick="selectTime('09:15')">09:15</button>
+                    <button class="time-slot" onclick="selectTime('09:30')">09:30</button>
+                    <button class="time-slot" onclick="selectTime('09:45')">09:45</button>
+                </div>
+                <button class="accordion-button">10:00 - 11:00</button>
+                <div class="accordion-content">
+                    <button class="time-slot" onclick="selectTime('10:00')">10:00</button>
+                    <button class="time-slot" onclick="selectTime('10:15')">10:15</button>
+                    <button class="time-slot" onclick="selectTime('10:30')">10:30</button>
+                    <button class="time-slot" onclick="selectTime('10:45')">10:45</button>
+                </div>
+                <button class="accordion-button">11:00 - 12:00</button>
+                <div class="accordion-content">
+                    <button class="time-slot" onclick="selectTime('11:00')">11:00</button>
+                    <button class="time-slot" onclick="selectTime('11:15')">11:15</button>
+                    <button class="time-slot" onclick="selectTime('11:30')">11:30</button>
+                    <button class="time-slot" onclick="selectTime('11:45')">11:45</button>
+                </div>
+                <button class="accordion-button">13:00 - 14:00</button>
+                <div class="accordion-content">
+                    <button class="time-slot" onclick="selectTime('13:00')">13:00</button>
+                    <button class="time-slot" onclick="selectTime('13:15')">13:15</button>
+                    <button class="time-slot" onclick="selectTime('13:30')">13:30</button>
+                    <button class="time-slot" onclick="selectTime('13:45')">13:45</button>
+                </div>
+                <button class="accordion-button">14:00 - 15:00</button>
+                <div class="accordion-content">
+                    <button class="time-slot" onclick="selectTime('14:00')">14:00</button>
+                    <button class="time-slot" onclick="selectTime('14:15')">14:15</button>
+                    <button class="time-slot" onclick="selectTime('14:30')">14:30</button>
+                    <button class="time-slot" onclick="selectTime('14:45')">14:45</button>
+                </div>
+                <button class="accordion-button">15:00 - 16:00</button>
+                <div class="accordion-content">
+                    <button class="time-slot" onclick="selectTime('15:00')">15:00</button>
+                    <button class="time-slot" onclick="selectTime('15:15')">15:15</button>
+                    <button class="time-slot" onclick="selectTime('15:30')">15:30</button>
+                    <button class="time-slot" onclick="selectTime('15:45')">15:45</button>
+                </div>
+            </div>
+            <span class="error" id="timeError">Lütfen randevu saati seçiniz.</span>
+        </div>
+        <button class="next-button" onclick="saveAppointment()">Randevuyu Kaydet</button>
+    </div>
+    <div class="result" id="resultSection" style="display:none;">
+        <div class="header">
+            <img src="health.png" alt="Resim" width="50" height="50">
+            <h2>Randevunuz Başarıyla Oluşturulmuştur.</h2>
+        </div>
+        <div id="resultContent"></div>
+    </div>
+
+   <script src="script.js"></script>
+</body>
+</html>
